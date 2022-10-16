@@ -1607,15 +1607,6 @@ build_svt-hevc() {
   cd ../..
 }
 
-build_svt-av1() {
-  do_git_checkout https://github.com/OpenVisualCloud/SVT-AV1.git
-  cd SVT-AV1_git
-  cd Build
-    do_cmake_from_build_dir .. "-DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=AMD64"
-    do_make_and_make_install
-  cd ../..
-}
-
 build_svt-vp9() {
   do_git_checkout https://github.com/OpenVisualCloud/SVT-VP9.git
   cd SVT-VP9_git
@@ -2633,7 +2624,6 @@ build_ffmpeg_dependencies() {
   build_frei0r # Needs dlfcn. could use opencv...
   if [[ "$bits_target" != "32" && $build_svt = "y" ]]; then
     build_svt-hevc
-    build_svt-av1
     build_svt-vp9
   fi
   build_vidstab
